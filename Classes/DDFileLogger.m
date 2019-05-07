@@ -963,6 +963,7 @@ unsigned long long const kDDDefaultLogFilesDiskQuota   = 20 * 1024 * 1024; // 20
     // If user has overwritten to NSFileProtectionNone there is no neeed to create a new one.
     if (doesAppRunInBackground()) {
         NSFileProtectionType key = mostRecentLogFileInfo.fileAttributes[NSFileProtectionKey];
+        if (!key) return NO;
         BOOL isUntilFirstAuth = [key isEqualToString:NSFileProtectionCompleteUntilFirstUserAuthentication];
         BOOL isNone = [key isEqualToString:NSFileProtectionNone];
 
